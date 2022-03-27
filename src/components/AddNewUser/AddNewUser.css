@@ -1,0 +1,20 @@
+.Form__container {
+  max-width: 1100px;
+  padding: 40px;
+}
+
+.Input__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 50px;
+}
+
+.Form__buttons {
+  display: flex;
+  justify-content: space-between;
+
+  margin-left: auto;
+  width: 300px;
+}

@@ -1,0 +1,27 @@
+.App__container {
+  padding: 30px;
+}
+
+.App__title {
+  padding-bottom: 30px;
+}
+
+.Users__container {
+  border: 1px solid #b8b8b8;
+  border-radius: 10px;
+  box-shadow: 0px 0px 6px 5px rgba(0, 0, 0, 0.37);
+}
+
+.Users__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+
+  border-bottom: 1px solid #b8b8b8;
+}
+
+.Users__info {
+  /* padding: 10px; */
+  /* padding: 60px 20px 70px 240px; */
+}
