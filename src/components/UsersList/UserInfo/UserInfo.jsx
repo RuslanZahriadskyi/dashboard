@@ -1,22 +1,45 @@
 import React from "react";
 import { TableCell, TableRow, Button } from "@mui/material";
 
-function UserInfo({ user }) {
-  return (
-    <TableRow key={user.id}>
+function UserInfo({
+  sortedUsers,
+  setDeletedUserId,
+  deleteUser,
+  editUser,
+  setEditedUser,
+}) {
+  return sortedUsers.map(({ id, name, username, email, address }) => (
+    <TableRow key={id}>
       <TableCell component="th" scope="row">
-        {user.id}
+        {id}
       </TableCell>
       <TableCell component="th" scope="row" align="center">
-        {user.name}
+        {name}
       </TableCell>
-      <TableCell align="center">{user.username}</TableCell>
-      <TableCell align="center">{user.email}</TableCell>
-      <TableCell align="center">{user.adress.city}</TableCell>
+      <TableCell align="center">{username}</TableCell>
+      <TableCell align="center">{email}</TableCell>
+      <TableCell align="center">{address.city}</TableCell>
       <TableCell align="center">
         <Button
           variant="contained"
-          sx={{ width: 100, height: 40, bgcolor: "#ffa724" }}
+          sx={{
+            width: 100,
+            height: 40,
+            backgroundColor: "#ffa724",
+            "&:hover": {
+              backgroundColor: "#db8400",
+            },
+          }}
+          onClick={() => {
+            setEditedUser({
+              id,
+              name,
+              username,
+              email,
+              address: { city: address.city },
+            });
+            editUser();
+          }}
         >
           edit
         </Button>
@@ -24,14 +47,24 @@ function UserInfo({ user }) {
       <TableCell align="center">
         <Button
           variant="contained"
-          sx={{ width: 100, height: 40 }}
-          color="error"
+          sx={{
+            width: 100,
+            height: 40,
+            backgroundColor: "#bd0000",
+            "&:hover": {
+              backgroundColor: "#8a0000",
+            },
+          }}
+          onClick={() => {
+            setDeletedUserId(id);
+            deleteUser();
+          }}
         >
           delete
         </Button>
       </TableCell>
     </TableRow>
-  );
+  ));
 }
 
 export default UserInfo;

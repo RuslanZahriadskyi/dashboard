@@ -16,12 +16,20 @@ const getSortedUsers = createSelector(
     }
     if (sorted === "A-Z") {
       return users.slice().sort((a, b) => {
-        return a.username > b.username ? 1 : a.username === b.username ? 0 : -1;
+        return a.username.toLowerCase() > b.username.toLowerCase()
+          ? 1
+          : a.username.toLowerCase() === b.username.toLowerCase()
+          ? 0
+          : -1;
       });
     }
     if (sorted === "Z-A") {
       return users.slice().sort((a, b) => {
-        return a.username > b.username ? -1 : a.username === b.username ? 0 : 1;
+        return a.username.toLowerCase() > b.username.toLowerCase()
+          ? -1
+          : a.username.toLowerCase() === b.username.toLowerCase()
+          ? 0
+          : 1;
       });
     }
   }

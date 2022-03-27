@@ -7,7 +7,6 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Button,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { usersAction, usersSelectors } from "../../redux/users";
@@ -16,6 +15,7 @@ import OwnModal from "../Modal/OwnModal";
 import EditUser from "../EditUser";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
+import UserInfo from "./UserInfo";
 
 function UsersList() {
   const sortedUsers = useSelector(usersSelectors.getSortedUsers);
@@ -64,63 +64,13 @@ function UsersList() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {sortedUsers.map(({ id, name, username, email, address }) => (
-              <TableRow key={id}>
-                <TableCell component="th" scope="row">
-                  {id}
-                </TableCell>
-                <TableCell component="th" scope="row" align="center">
-                  {name}
-                </TableCell>
-                <TableCell align="center">{username}</TableCell>
-                <TableCell align="center">{email}</TableCell>
-                <TableCell align="center">{address.city}</TableCell>
-                <TableCell align="center">
-                  <Button
-                    variant="contained"
-                    sx={{
-                      width: 100,
-                      height: 40,
-                      backgroundColor: "#ffa724",
-                      "&:hover": {
-                        backgroundColor: "#db8400",
-                      },
-                    }}
-                    onClick={() => {
-                      setEditedUser({
-                        id,
-                        name,
-                        username,
-                        email,
-                        address: { city: address.city },
-                      });
-                      editUser();
-                    }}
-                  >
-                    edit
-                  </Button>
-                </TableCell>
-                <TableCell align="center">
-                  <Button
-                    variant="contained"
-                    sx={{
-                      width: 100,
-                      height: 40,
-                      backgroundColor: "#bd0000",
-                      "&:hover": {
-                        backgroundColor: "#8a0000",
-                      },
-                    }}
-                    onClick={() => {
-                      setDeletedUserId(id);
-                      deleteUser();
-                    }}
-                  >
-                    delete
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
+            <UserInfo
+              sortedUsers={sortedUsers}
+              setDeletedUserId={setDeletedUserId}
+              deleteUser={deleteUser}
+              editUser={editUser}
+              setEditedUser={setEditedUser}
+            />
           </TableBody>
         </Table>
       </TableContainer>
